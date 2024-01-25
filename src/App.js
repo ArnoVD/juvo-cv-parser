@@ -5,7 +5,7 @@ import {
   Container,
   Text,
   ChakraBaseProvider,
-  extendBaseTheme,
+  extendBaseTheme
 } from '@chakra-ui/react'
 
 import DocxReader from "./components/DocxReader";

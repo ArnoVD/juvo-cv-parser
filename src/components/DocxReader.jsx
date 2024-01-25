@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import PizZip from "pizzip";
 import { DOMParser } from "@xmldom/xmldom";
 import axios from "axios";
+import {
+    Button
+} from '@chakra-ui/react'
 
 function askQuestion(question, content) {
     const body = {
@@ -16,7 +19,7 @@ function askQuestion(question, content) {
 
     const config = {
         headers: {
-            'Authorization': `Bearer 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`,
+            'Authorization': `Bearer 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`,
             'Content-Type': 'application/json'
         }
     }
@@ -27,11 +30,13 @@ function askQuestion(question, content) {
         .then(res => {
             console.log(res);
             console.log(res.data);
-            return res;
+            if(res.data.hasOwnProperty("choices")) {
+                alert(res.data.choices[0].message.content);
+            }
 
         }).catch(err => {
             console.log(err);
-            return err;
+            alert(err);
         });
 }
 
@@ -86,12 +91,16 @@ const DocxReader = () => {
 
     console.log(paragraphs);
 
-    const response = askQuestion("Hoe veel jaar ervaring heeft deze persoon?", paragraphs);
+    const paragraphsString = paragraphs.join(" ");
+
+    console.log(paragraphsString)
 
     return (
         <div>
-            <input type="file" onChange={onFileUpload} name="docx-reader" />;
-            <p>{response}</p>
+            <input type="file" onChange={onFileUpload} name="docx-reader" />
+            <br/>
+            <br/>
+            <Button type="gray" onClick={() => askQuestion("Hoe veel jaar ervaring heeft deze persoon?", paragraphsString)}>Click Here</Button>
         </div>
     );
 };
