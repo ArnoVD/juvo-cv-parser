@@ -1,6 +1,36 @@
 import React, { useState } from "react";
 import PizZip from "pizzip";
 import { DOMParser } from "@xmldom/xmldom";
+import axios from "axios";
+
+function askQuestion(question, content) {
+    const body = {
+        "model": "gpt-3.5-turbo",
+        "messages": [
+            {
+                "role": "user",
+                "content": question + " " + content
+            }
+        ]
+    };
+
+    const config = {
+        headers: {
+            'Authorization': `Bearer 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`,
+            'Content-Type': 'application/json'
+        }
+    }
+
+    console.log("PERFORMING POST REQUEST");
+
+    axios.post(`https://api.openai.com/v1/chat/completions`,  body, config)
+        .then(res => {
+            console.log(res);
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        });
+}
 
 function str2xml(str) {
     if (str.charCodeAt(0) === 65279) {
@@ -50,6 +80,10 @@ const DocxReader = () => {
 
         reader.readAsBinaryString(file);
     };
+
+    console.log(paragraphs);
+
+    askQuestion("Hoe veel jaar ervaring heeft deze persoon?", paragraphs);
 
     return <input type="file" onChange={onFileUpload} name="docx-reader" />;
 };
