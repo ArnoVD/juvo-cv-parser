@@ -100,7 +100,9 @@ const DocxReader = () => {
             <input type="file" onChange={onFileUpload} name="docx-reader" />
             <br/>
             <br/>
-            <Button type="gray" onClick={() => askQuestion("Hoe veel jaar ervaring heeft deze persoon?", paragraphsString)}>Click Here</Button>
+            <Button colorScheme='teal' size='md' onClick={() => askQuestion("Hoe veel jaar ervaring heeft deze persoon?", paragraphsString)}>
+                Click Here!
+            </Button>
         </div>
     );
 };
