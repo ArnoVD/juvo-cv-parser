@@ -16,7 +16,7 @@ function askQuestion(question, content) {
 
     const config = {
         headers: {
-            'Authorization': `Bearer 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`,
+            'Authorization': `Bearer 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`,
             'Content-Type': 'application/json'
         }
     }
@@ -27,8 +27,11 @@ function askQuestion(question, content) {
         .then(res => {
             console.log(res);
             console.log(res.data);
+            return res;
+
         }).catch(err => {
             console.log(err);
+            return err;
         });
 }
 
@@ -83,9 +86,14 @@ const DocxReader = () => {
 
     console.log(paragraphs);
 
-    askQuestion("Hoe veel jaar ervaring heeft deze persoon?", paragraphs);
+    const response = askQuestion("Hoe veel jaar ervaring heeft deze persoon?", paragraphs);
 
-    return <input type="file" onChange={onFileUpload} name="docx-reader" />;
+    return (
+        <div>
+            <input type="file" onChange={onFileUpload} name="docx-reader" />;
+            <p>{response}</p>
+        </div>
+    );
 };
 
 export default DocxReader;
