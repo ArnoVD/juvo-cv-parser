@@ -17,7 +17,7 @@ function askQuestion(question, content) {
 
   const config = {
     headers: {
-      Authorization: `Bearer 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`,
+      Authorization: `Bearer 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`,
       "Content-Type": "application/json",
     },
   };
@@ -104,7 +104,7 @@ const DocxReader = () => {
         size="md"
         onClick={() =>
           askQuestion(
-            "Hoe veel jaar ervaring heeft deze persoon?",
+            "Hoeveel jaar ervaring heeft de ontwikkelaar in de programmeertaal Java?",
             paragraphsString
           )
         }
